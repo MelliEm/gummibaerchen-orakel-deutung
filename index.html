@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gummibärchen-Orakel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .gummy-input {
+            margin: 10px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .farb-auswahl {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .deutung {
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .einzeldeutung {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐻 Gummibärchen-Orakel 🔮</h1>
+        <p>Wähle die Farben deiner gezogenen Gummibärchen aus:</p>
+        
+        <div class="gummy-input">
+            <div>
+                1. Gummibärchen: 
+                <select class="farb-auswahl" id="gummy1">
+                    <option value="rot">Rot</option>
+                    <option value="gelb">Gelb</option>
+                    <option value="grün">Grün</option>
+                    <option value="orange">Orange</option>
+                    <option value="weiß">Weiß</option>
+                </select>
+            </div>
+            <div>
+                2. Gummibärchen: 
+                <select class="farb-auswahl" id="gummy2">
+                    <option value="rot">Rot</option>
+                    <option value="gelb">Gelb</option>
+                    <option value="grün">Grün</option>
+                    <option value="orange">Orange</option>
+                    <option value="weiß">Weiß</option>
+                </select>
+            </div>
+            <div>
+                3. Gummibärchen: 
+                <select class="farb-auswahl" id="gummy3">
+                    <option value="rot">Rot</option>
+                    <option value="gelb">Gelb</option>
+                    <option value="grün">Grün</option>
+                    <option value="orange">Orange</option>
+                    <option value="weiß">Weiß</option>
+                </select>
+            </div>
+            <div>
+                4. Gummibärchen: 
+                <select class="farb-auswahl" id="gummy4">
+                    <option value="rot">Rot</option>
+                    <option value="gelb">Gelb</option>
+                    <option value="grün">Grün</option>
+                    <option value="orange">Orange</option>
+                    <option value="weiß">Weiß</option>
+                </select>
+            </div>
+            <div>
+                5. Gummibärchen: 
+                <select class="farb-auswahl" id="gummy5">
+                    <option value="rot">Rot</option>
+                    <option value="gelb">Gelb</option>
+                    <option value="grün">Grün</option>
+                    <option value="orange">Orange</option>
+                    <option value="weiß">Weiß</option>
+                </select>
+            </div>
+        </div>
+
+        <button onclick="zeigeDeutungen()">Deutungen anzeigen</button>
+        <div class="deutung" id="deutungsBox"></div>
+    </div>
+
+    <script>
+        const deutungen = {
+            'rot': [
+                'Liebe und Leidenschaft erwarten dich. Eine neue Romanze könnte sich anbahnen.',
+                'Eine wichtige Entscheidung steht bevor, die dein Herz berühren wird.',
+                'Neue Energie kommt in dein Leben - nutze sie für deine Ziele.',
+                'Eine intensive Begegnung wird dein Leben verändern.',
+                'Deine Leidenschaft für ein Projekt wird sich auszahlen.'
+            ],
+            'gelb': [
+                'Sonnige Zeiten stehen dir bevor. Optimismus ist dein bester Begleiter.',
+                'Ein kreatives Projekt wird erfolgreich sein und dir Anerkennung bringen.',
+                'Neue Freundschaften werden geschlossen, die dich inspirieren.',
+                'Eine unerwartete Nachricht bringt Freude in dein Leben.',
+                'Deine positive Ausstrahlung wird andere Menschen anziehen.'
+            ],
+            'grün': [
+                'Wachstum und Erfolg sind in Sicht. Finanzielle Verbesserungen bahnen sich an.',
+                'Eine Veränderung bringt Glück und neue Möglichkeiten.',
+                'Harmonie kehrt in dein Leben ein, besonders in Familienangelegenheiten.',
+                'Ein lang gehegter Wunsch geht in Erfüllung.',
+                'Gesundheit und Wohlbefinden stehen im Vordergrund.'
+            ],
+            'orange': [
+                'Abenteuer und Spannung erwarten dich. Eine Reise steht bevor.',
+                'Eine überraschende Begegnung führt zu aufregenden Möglichkeiten.',
+                'Neue Chancen tun sich auf - sei mutig und ergreife sie.',
+                'Deine Spontaneität wird zu einem glücklichen Zufall führen.',
+                'Ein spannendes Projekt wartet darauf, von dir entdeckt zu werden.'
+            ],
+            'weiß': [
+                'Klarheit in einer wichtigen Sache wird dich erleichtern.',
+                'Ein Neuanfang steht bevor - die Zeichen stehen auf Veränderung.',
+                'Innerer Frieden kehrt ein, alte Konflikte lösen sich.',
+                'Eine wichtige Erkenntnis wird dein Leben vereinfachen.',
+                'Reinigung und Erneuerung prägen die kommende Zeit.'
+            ]
+        };
+
+        const positionen = [
+            'Diese Position symbolisiert den gegenwärtigen Moment und unmittelbare Ereignisse.',
+            'An dieser Stelle zeigt sich, was in naher Zukunft auf dich zukommt.',
+            'Die mittlere Position offenbart den Kern deiner aktuellen Situation.',
+            'Hier findest du Hinweise auf verborgene Möglichkeiten.',
+            'Die letzte Position gibt Aufschluss über langfristige Entwicklungen.'
+        ];
+
+        const farben = {
+            'rot': '#ff4444',
+            'gelb': '#ffdd00',
+            'grün': '#44ff44',
+            'orange': '#ff9933',
+            'weiß': '#ffffff'
+        };
+
+        function zeigeDeutungen() {
+            const deutungsBox = document.getElementById('deutungsBox');
+            deutungsBox.innerHTML = '';
+            deutungsBox.style.display = 'block';
+
+            for (let i = 1; i <= 5; i++) {
+                const farbe = document.getElementById(`gummy${i}`).value;
+                const möglicheDeutungen = deutungen[farbe];
+                const zufallsDeutung = möglicheDeutungen[Math.floor(Math.random() * möglicheDeutungen.length)];
+                
+                const deutungDiv = document.createElement('div');
+                deutungDiv.className = 'einzeldeutung';
+                deutungDiv.style.backgroundColor = `${farben[farbe]}22`;
+                deutungDiv.innerHTML = `
+                    <strong>${i}. ${farbe.charAt(0).toUpperCase() + farbe.slice(1)}es Gummibärchen:</strong><br>
+                    ${zufallsDeutung}<br>
+                    <em>${positionen[i-1]}</em>
+                `;
+                
+                deutungsBox.appendChild(deutungDiv);
+            }
+        }
+    </script>
+</body>
+</html>
