@@ -1,2 +1,2 @@
 # gummibaerchen-orakel
-Interaktives Gummibärchen-Orakel - Erhalte eine Deutung basierend auf der Farbe deiner Gummibärchen
+Virtuelles Gummibärchen-Orakel - Ziehe 5 zufällige Gummibärchen und erhalte deine persönliche Zukunftsdeutung
